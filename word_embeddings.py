@@ -8,22 +8,26 @@ vocabulary = None
 vocab_size = None
 embedding_matrix = None
 oov_words = [] # Array to track OOV words
+UNKNOWN_TOKEN = '<UNKNOWN>'  # Special token for OOV words
 
 def run():
     # Tokenize the dataset
     tokenize_dataset(data.train_dataset)
 
     # Print the size of Vocabulary
-    print(f"1(a) Vocabulary size of training dataset = {vocab_size}")
+    print(f"1(a) Number of Vocabulary words in training dataset = {vocab_size}")
+    
+    # 1(c) : Add <UNKNOWN> token and replace all OOV words with it
+    add_unkown_token()
 
     # Initialize the glove model with our configuration
     glove_file_path = constants.glove_model_path
     glove_model_dimension = constants.glove_model_dimension
-    init_glove_model(glove_file_path, glove_model_dimension)
+    create_embedding_matrix(glove_file_path, glove_model_dimension)
 
     # Print the number of OOV words
     print(f"1(b) Number of Out Of Vocabulary words: {len(oov_words)}")
-
+    
 
 def tokenize_sentence(sentence):
     # Tokenize each sentence using NLTK's word_tokenize
@@ -42,20 +46,32 @@ def tokenize_dataset(dataset):
     vocabulary = list(vocab_counter.keys())
     vocab_size = len(vocabulary)
 
-def init_glove_model(glove_file_path, glove_model_dimension):
+def add_unkown_token():
+    global vocabulary, vocab_size, UNKNOWN_TOKEN
+
+    # Check if 'UNK' is already in the vocabulary, if not, add it
+    if UNKNOWN_TOKEN not in vocabulary:
+        vocabulary.append(UNKNOWN_TOKEN)
+        vocab_size += 1
+
+def create_embedding_matrix(glove_file_path, glove_model_dimension):
     global vocabulary, embedding_matrix, oov_words
     # Load the GloVe embeddings into a dictionary
     glove_embeddings = load_glove_embeddings(glove_file_path)
 
     # Create the embedding matrix
     embedding_matrix = np.zeros((vocab_size, glove_model_dimension))  # Initialize the matrix with zeros
+
+    # Initialize the UNKNOWN token with a random vector
+    unknown_vector = np.random.normal(scale=0.6, size=(glove_model_dimension,))
+    
     # Fill the embedding matrix
     for idx, word in enumerate(vocabulary):
         if word in glove_embeddings:
             embedding_matrix[idx] = glove_embeddings[word]  # Use the pretrained GloVe vector
         else:
             oov_words.append(word)  # Track OOV words
-            embedding_matrix[idx] = np.random.normal(scale=0.6, size=(glove_model_dimension,))  # Random vector for OOV words
+            embedding_matrix[idx] = unknown_vector
 
 def load_glove_embeddings(glove_file):
     embeddings_index = {}
