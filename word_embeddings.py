@@ -69,6 +69,8 @@ def create_embedding_matrix(glove_file_path, glove_model_dimension):
     for idx, word in enumerate(vocabulary):
         if word in glove_embeddings:
             embedding_matrix[idx] = glove_embeddings[word]  # Use the pretrained GloVe vector
+        elif word == UNKNOWN_TOKEN:
+            embedding_matrix[idx] = unknown_vector  # Do not add UNKNOWN token to oov
         else:
             oov_words.append(word)  # Track OOV words
             embedding_matrix[idx] = unknown_vector
