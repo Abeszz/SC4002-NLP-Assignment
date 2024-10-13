@@ -10,23 +10,36 @@ embedding_matrix = None
 oov_words = [] # Array to track OOV words
 UNKNOWN_TOKEN = '<UNKNOWN>'  # Special token for OOV words
 
+def load():
+    global embedding_matrix
+    print("Loading Embedding matrix..")
+    embedding_matrix = np.load(constants.embedding_matrix_path)
+
 def run():
     # Tokenize the dataset
+    print("Tokenizing dataset..")
     tokenize_dataset(data.train_dataset)
 
     # Print the size of Vocabulary
     print(f"1(a) Number of Vocabulary words in training dataset = {vocab_size}")
     
     # 1(c) : Add <UNKNOWN> token and replace all OOV words with it
+    print("Adding UNKNOWN token to vocabulary to handle OOV words..")
     add_unkown_token()
 
     # Initialize the glove model with our configuration
+    print("Initializing GloVe model and generating Embedding matrix..")
     glove_file_path = constants.glove_model_path
     glove_model_dimension = constants.glove_model_dimension
     create_embedding_matrix(glove_file_path, glove_model_dimension)
 
     # Print the number of OOV words
     print(f"1(b) Number of Out Of Vocabulary words: {len(oov_words)}")
+
+    print("Saving Embedding matrix..")
+    # Save the embedding matrix for future use
+    np.save(constants.embedding_matrix_path, embedding_matrix)
+    
     
 
 def tokenize_sentence(sentence):
