@@ -1,4 +1,4 @@
-﻿import data_preparation as data
+﻿from partone import data_preparation as data
 from nltk.tokenize import word_tokenize
 from collections import Counter
 import numpy as np

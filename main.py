@@ -1,5 +1,6 @@
-﻿import data_preparation as data
-import word_embeddings
+﻿from partone import data_preparation as data
+from partone import word_embeddings
+
 
 def main():
     
@@ -13,6 +14,6 @@ def main():
     # word_embeddings.run() # Run the word embedding to generate embedding model and save it.
     word_embeddings.load()  # Use load to load the saved model.
     print("Word Embedding Completed !")
-    
+
 if __name__ == '__main__':
     main()
