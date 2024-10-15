@@ -1,5 +1,6 @@
 ﻿import data_preparation as data
 import word_embeddings
+import model_training
 
 def main():
     
@@ -10,9 +11,14 @@ def main():
     
     # Prepare the Words Embeddings
     print("Setting up word embeddings...")
-    # word_embeddings.run() # Run the word embedding to generate embedding model and save it.
-    word_embeddings.load()  # Use load to load the saved model.
+    word_embeddings.run() # Run the word embedding to generate embedding model and save it.
+    # word_embeddings.load()  # Use load to load the saved model.
     print("Word Embedding Completed !")
+
+    # Train the model 
+    print("Training RNN model...")
+    model = model_training.train_model(data.train_dataset, data.validation_dataset, word_embeddings.vocabulary, word_embeddings.embedding_matrix)
+    print("Model Training Completed!")
     
 if __name__ == '__main__':
     main()
