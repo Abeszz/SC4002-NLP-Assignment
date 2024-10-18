@@ -37,7 +37,7 @@ class SentimentRNN(nn.Module):
         # self.rnn = nn.GRU(embedding_dim, hidden_size, num_layers=num_layers, batch_first=True, bidirectional=True)
 
         # Fully connected layer for classification
-        self.fc = nn.Linear(hidden_size * 2, output_size)  # Double hidden size for bidirectional RNN
+        self.fc = nn.Linear(hidden_size, output_size)  # Double hidden size for bidirectional RNN
 
         # Regularization layers
         # self.dropout = nn.Dropout(0.3)  # dropout rate
@@ -52,7 +52,7 @@ class SentimentRNN(nn.Module):
         # final_output = torch.cat((hidden[-2,:,:], hidden[-1,:,:]), dim=1)  # Concatenate forward and backward hidden states
         # final_output = self.batch_norm(final_output)  # Apply batch normalization
         # final_output = self.layer_norm(final_output)  # Apply layer normalization
-        final_output = self.dropout(final_output)     # Apply dropout
+        # final_output = self.dropout(final_output)     # Apply dropout
         return self.fc(final_output)
 
 # Dataset class to handle data batching
