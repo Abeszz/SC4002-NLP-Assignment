@@ -6,6 +6,8 @@ from torch.nn.utils.rnn import pad_sequence
 import numpy as np
 from nltk.tokenize import word_tokenize
 import data_preparation as data
+import json
+
 
 # Custom collate_fn to handle padding
 def collate_fn(batch):
@@ -18,32 +20,37 @@ def collate_fn(batch):
 class SentimentRNN(nn.Module):
     def __init__(self, embedding_matrix, hidden_size, output_size, num_layers=1):
         super(SentimentRNN, self).__init__()
-        
+
         vocab_size, embedding_dim = embedding_matrix.shape
-        
+
         # Embedding layer using pre-trained embeddings
         self.embedding = nn.Embedding(vocab_size, embedding_dim)
         self.embedding.weight = nn.Parameter(torch.tensor(embedding_matrix, dtype=torch.float32))
         self.embedding.weight.requires_grad = False  # freeze embeddings
-        
+
+        # Simple RNN layer, 1 layer, uni-directional
+        self.rnn = nn.RNN(embedding_dim, hidden_size, num_layers=num_layers, batch_first=True)  # Uni-directional RNN with 1 layer
+
         # RNN layer
-        self.rnn = nn.RNN(embedding_dim, hidden_size, num_layers=2, batch_first=True, bidirectional=True) 
-        # self.rnn = nn.LSTM(embedding_dim, hidden_size, num_layers=2, batch_first=True, bidirectional=True) 
-        # self.rnn = nn.GRU(embedding_dim, hidden_size, num_layers=num_layers, batch_first=True, bidirectional=True) 
-        
+        # self.rnn = nn.RNN(embedding_dim, hidden_size, num_layers=2, batch_first=True, bidirectional=True)
+        # self.rnn = nn.LSTM(embedding_dim, hidden_size, num_layers=2, batch_first=True, bidirectional=True)
+        # self.rnn = nn.GRU(embedding_dim, hidden_size, num_layers=num_layers, batch_first=True, bidirectional=True)
+
         # Fully connected layer for classification
         self.fc = nn.Linear(hidden_size * 2, output_size)  # Double hidden size for bidirectional RNN
 
-        self.dropout = nn.Dropout(0.3)  # dropout rate
-        self.batch_norm = nn.BatchNorm1d(hidden_size * 2)  # Add batch normalization
+        # Regularization layers
+        # self.dropout = nn.Dropout(0.3)  # dropout rate
+        # self.batch_norm = nn.BatchNorm1d(hidden_size * 2)  # Add batch normalization
         # self.layer_norm = nn.LayerNorm(hidden_size * 2)  # Add layer normalization
 
     def forward(self, x):
         embedded = self.embedding(x)
-        output, hidden = self.rnn(embedded) # for rnn and gru only two values are returned 
-        # output, (hidden, _) = self.rnn(embedded) # for lstm  
-        final_output = torch.cat((hidden[-2,:,:], hidden[-1,:,:]), dim=1)  # Concatenate forward and backward hidden states
-        final_output = self.batch_norm(final_output)  # Apply batch normalization
+        output, hidden = self.rnn(embedded) # for rnn and gru only two values are returned
+        final_output = hidden[-1] # Use the last hidden state for uni-directional RNN
+        # output, (hidden, _) = self.rnn(embedded) # for lstm
+        # final_output = torch.cat((hidden[-2,:,:], hidden[-1,:,:]), dim=1)  # Concatenate forward and backward hidden states
+        # final_output = self.batch_norm(final_output)  # Apply batch normalization
         # final_output = self.layer_norm(final_output)  # Apply layer normalization
         final_output = self.dropout(final_output)     # Apply dropout
         return self.fc(final_output)
@@ -64,21 +71,53 @@ class TextDataset(Dataset):
         indices = [self.vocab.index(token) if token in self.vocab else self.vocab.index("<UNKNOWN>") for token in tokens]
         return torch.tensor(indices), torch.tensor(label)
 
-def train_model(train_data, valid_data, vocab, embedding_matrix, batch_size=32, epochs=10, lr=0.0001, patience=3):    
-    output_size = 2  # Binary classification (positive/negative)
-    hidden_size = 128
+def get_optimizer(params, model):
+    optimizer_type = params["optimizer_type"]
+    lr = params["learning_rate"]
+    weight_decay = params.get("weight_decay", 0)  # Default to 0 if not specified
+
+    if optimizer_type == "SGD":
+        momentum = params.get("momentum", 0)  # Default to 0 if not specified
+        return optim.SGD(model.parameters(), lr=lr, momentum=momentum, weight_decay=weight_decay)
+
+    elif optimizer_type == "Adam":
+        return optim.Adam(model.parameters(), lr=lr, weight_decay=weight_decay)
+
+    else:
+        raise ValueError(f"Unknown optimizer type: {optimizer_type}")
+
+def train_model(train_data, valid_data, vocab, embedding_matrix, params_file="hyperparams.txt",  optimizer_file="optimizer_params.txt"):
+
+    # Read hyperparameters from file
+    with open(params_file, "r") as f:
+        params = json.load(f)
+
+    # Load optimizer parameters
+    with open(optimizer_file, "r") as f:
+        optimizer_params = json.load(f)
+    output_size = params['output_size']  # Binary classification (positive/negative)
+    hidden_size = params['hidden_size']
+    batch_size = params['batch_size']
+    epochs = params['epochs']
+    lr = params['learning_rate']
+    patience = params['patience']
     model = SentimentRNN(embedding_matrix, hidden_size, output_size)
-    
-    criterion = nn.CrossEntropyLoss()
+
+
     # optimizer = optim.Adam(model.parameters(), lr=lr, weight_decay=1e-5)
     # optimizer = optim.SGD(model.parameters(), lr=lr, momentum=0.9)
-    optimizer = optim.SGD(model.parameters(), lr=lr, momentum=0.9, weight_decay=1e-5)  # Use weight decay
+    # optimizer = optim.SGD(model.parameters(), lr=lr, momentum=0.9, weight_decay=1e-5)  # Use weight decay
+
+    # Get the optimizer dynamically based on the configuration in optimizer_file
+    optimizer = get_optimizer(optimizer_params, model)
+
+    criterion = nn.CrossEntropyLoss()
     scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=3, gamma=0.1)  # StepLR for learning rate scheduling
 
     # Create DataLoaders for training and validation with custom collate_fn for padding
     train_loader = DataLoader(TextDataset(train_data, vocab), batch_size=batch_size, shuffle=True, collate_fn=collate_fn)
     valid_loader = DataLoader(TextDataset(valid_data, vocab), batch_size=batch_size, collate_fn=collate_fn)
-    
+
     best_val_accuracy = 0
     epochs_no_improve = 0
 
@@ -134,7 +173,7 @@ def train_model(train_data, valid_data, vocab, embedding_matrix, batch_size=32, 
 def evaluate_model_on_test(model, test_data, vocab):
     # Create a DataLoader for the test dataset
     test_loader = DataLoader(TextDataset(test_data, vocab), batch_size=32, collate_fn=collate_fn)
-    
+
     model.eval()  # Set the model to evaluation mode
     correct = 0
     total = 0
@@ -144,7 +183,7 @@ def evaluate_model_on_test(model, test_data, vocab):
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
-    
+
     # Calculate and print the test accuracy
     test_accuracy = 100 * correct / total
     print(f'Test Accuracy: {test_accuracy}%')
