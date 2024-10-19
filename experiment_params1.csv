@@ -1,2 +1,0 @@
-rnn_type,num_layers,use_bidirectional,use_dropout,use_batch_norm,use_layer_norm,optimizer_type,learning_rate,momentum,weight_decay,batch_size,epochs,patience,hidden_size,output_size
-RNN,1,FALSE,FALSE,FALSE,FALSE,SGD,0.01,0.9,0.00001,32,10,3,128,2

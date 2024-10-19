@@ -1,7 +1,2 @@
-rnn_type,num_layers,use_bidirectional,use_dropout,use_batch_norm,use_layer_norm,optimizer_type,learning_rate,momentum,weight_decay,batch_size,epochs,patience,hidden_size,output_size
-RNN,1,False,False,False,False,SGD,0.01,0.9,0.00001,32,10,3,128,2
-LSTM,2,True,True,True,False,Adam,0.001,0.0,0.0001,64,15,5,256,2
-GRU,1,False,True,False,True,SGD,0.005,0.8,0.00005,32,12,4,128,2
-RNN,2,True,True,True,True,Adam,0.0005,0.0,0.0001,32,20,5,128,2
-LSTM,3,True,False,False,True,Adam,0.0003,0.0,0.00005,64,25,5,512,2
-GRU,2,False,False,True,False,SGD,0.002,0.9,0.0001,32,10,3,128,2
+model_type,rnn_type,num_layers,use_bidirectional,use_dropout,use_batch_norm,use_layer_norm,aggregation_method,optimizer_type,learning_rate,momentum,weight_decay,batch_size,epochs,patience,hidden_size,output_size,freeze_embeddings,num_filters,filter_sizes,dropout_rate,oov_handling_method,embedding_dim,glove_file_path
+RNN,RNN,1,False,False,False,False,last_hidden,Adam,0.01,0,0.0001,32,100,5,128,2,True,0,0,0,unknown_token,100,glove.6B.100d.txt
