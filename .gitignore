@@ -10,3 +10,6 @@
 /__pycache__
 /GlovePreTrainedModels
 *.pyc
+
+# glove txt file
+glove.6B.100d.txt
