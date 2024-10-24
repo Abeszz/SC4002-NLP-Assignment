@@ -1,2 +1,0 @@
-model_type,rnn_type,num_layers,use_bidirectional,use_dropout,use_batch_norm,use_layer_norm,aggregation_method,optimizer_type,learning_rate,momentum,weight_decay,batch_size,epochs,patience,hidden_size,output_size,freeze_embeddings,num_filters,filter_sizes,dropout_rate,oov_handling_method,embedding_dim,glove_file_path
-RNN,RNN,1,False,False,False,False,last_hidden,Adam,0.01,0,0.0001,32,100,5,128,2,True,0,0,0,unknown_token,100,glove.6B.100d.txt
