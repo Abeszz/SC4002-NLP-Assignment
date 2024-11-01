@@ -13,3 +13,11 @@
 
 # glove txt file
 glove.6B.100d.txt
+
+# models pt files
+/best_models
+
+# csv files
+/results/backup
+/results/*.csv
+/*.csv
