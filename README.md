@@ -4,10 +4,10 @@ Welcome to the SC4002 - Natural Language Processing Assignment repository! This 
 
 ## Table of Contents
 
-- [Prerequisites](#prerequisites)
+- [Installation](#installation)
 - [Running the Notebook](#running-the-notebook)
   - [Running on Visual Studio Code](#running-on-visual-studio-code)
-    - [Installation](#installation)
+    - [Prerequisites](#prerequisites)
   - [Running on Google Colab (Recommended)](#running-on-google-colab-recommended)
 - [Output](#output)
 
