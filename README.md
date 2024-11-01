@@ -5,24 +5,12 @@ Welcome to the SC4002 - Natural Language Processing Assignment repository! This 
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
-- [Installation](#installation)
 - [Running the Notebook](#running-the-notebook)
   - [Running on Visual Studio Code](#running-on-visual-studio-code)
+    - [Installation](#installation)
   - [Running on Google Colab (Recommended)](#running-on-google-colab-recommended)
 - [Output](#output)
 
-
----
-
-## Prerequisites
-
-- Python 3.x (Python 3.9 or later is recommended)
-
-Ensure that you have Python 3 installed on your machine before proceeding with the installation steps. You can check your Python version by running the following command:
-
-```bash
-python --version
-```
 
 ## Installation
 
@@ -40,6 +28,16 @@ cd SC4002-NLP-Assignment
 You can run the `.ipynb` file using one of the following methods:
 
 ## Running on Visual Studio Code
+
+### Prerequisites
+
+- Python 3.x (Python 3.9 or later is recommended)
+
+Ensure that you have Python 3 installed on your machine before proceeding with the installation steps. You can check your Python version by running the following command:
+
+```bash
+python --version
+```
 
 1. Open Visual Studio Code and navigate to the project folder.
 2. Ensure the **Jupyter** extensions are installed in VS Code.
@@ -62,7 +60,7 @@ You can run the `.ipynb` file using one of the following methods:
 
 ## Output
 
-Each method in this notebook will output its results to a CSV file. The generated CSV files will be saved in the project directory. The CSV files will be named according to the method used, for example: `part3_blstm_bgru_results.csv`.
+The notebook will output performance of each model to a CSV file. The generated CSV files will be saved in the project directory. The CSV files will be named according to the method used, for example: `part3_blstm_bgru_results.csv`.
 
 The CSV files will include:
 - **Best Hyperparameters Chosen**: Only the optimal hyperparameter values selected during the run.
