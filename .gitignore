@@ -16,8 +16,7 @@ glove.6B.100d.txt
 
 # models pt files
 /best_models
-
+/*.pt
 # csv files
-/results/backup
-/results/*.csv
+/results
 /*.csv
