@@ -1,0 +1,139 @@
+Model,Validation Accuracy,Train Loss,Test Accuracy,Epoch,Parameters
+Part 2 RNN,51.88,0.69,50.09,22,"optimizer_type: SGD, learning_rate: 0.0001, momentum: 0.9, weight_decay: 0.0001, batch_size: 32, epochs: 100, patience: 10, model_type: RNN, rnn_type: RNN, num_layers: 3, use_bidirectional: False, use_dropout: False, use_batch_norm: False, use_layer_norm: False, aggregation_method: last_hidden, hidden_size: 64, output_size: 2, freeze_embeddings: True, oov_handling_method: none, embedding_dim: 100"
+Part 3 RNN,51.31,0.69,49.53,22,"optimizer_type: SGD, learning_rate: 0.001, momentum: 0.9, weight_decay: 0.0001, batch_size: 32, epochs: 100, patience: 10, model_type: RNN, rnn_type: RNN, num_layers: 2, use_bidirectional: False, use_dropout: True, use_batch_norm: True, use_layer_norm: True, aggregation_method: last_hidden, hidden_size: 128, output_size: 2, freeze_embeddings: False, oov_handling_method: unknown_token, embedding_dim: 100"
+Part 3 CNN,78.99,0.2,79.08,18,"optimizer_type: Adam, learning_rate: 0.001, momentum: 0.9, weight_decay: 0.0001, batch_size: 64, epochs: 100, patience: 10, model_type: CNN, num_filters: 128, filter_sizes: [2, 3], dropout_rate: 0.3, output_size: 2, freeze_embeddings: False, oov_handling_method: unknown_token, embedding_dim: 100, glove_file_path: glove.6B.100d.txt"
+
+
+
+Model,Validation Accuracy,Train Loss,Test Accuracy,Epoch,Parameters
+Part 2 RNN,49.91,0.69,52.06,11,"optimizer_type: SGD, learning_rate: 0.001, momentum: 0.9, weight_decay: 0.0001, batch_size: 64, epochs: 100, patience: 10, model_type: RNN, rnn_type: RNN, num_layers: 2, use_bidirectional: False, use_dropout: True, use_batch_norm: True, use_layer_norm: True, aggregation_method: last_hidden, hidden_size: 64, output_size: 2, freeze_embeddings: True, oov_handling_method: none, embedding_dim: 100"
+optimizer_type,learning_rate,momentum,weight_decay,batch_size,epochs,patience,model_type,rnn_type,num_layers,use_bidirectional,use_dropout,use_batch_norm,use_layer_norm,aggregation_method,hidden_size,output_size,freeze_embeddings,oov_handling_method,embedding_dim,glove_file_path,Epoch,Train Loss,Validation Accuracy,Test Accuracy
+SGD,0.001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,64,2,True,none,100,glove.6B.100d.txt,1,0.71,51.69,52.06
+SGD,0.001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,64,2,True,none,100,glove.6B.100d.txt,2,0.7,49.91,52.06
+SGD,0.001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,64,2,True,none,100,glove.6B.100d.txt,3,0.7,51.5,52.06
+SGD,0.001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,64,2,True,none,100,glove.6B.100d.txt,4,0.7,49.91,52.06
+SGD,0.001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,64,2,True,none,100,glove.6B.100d.txt,5,0.7,49.91,52.06
+SGD,0.001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,64,2,True,none,100,glove.6B.100d.txt,6,0.7,48.22,52.06
+SGD,0.001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,64,2,True,none,100,glove.6B.100d.txt,7,0.69,48.22,52.06
+SGD,0.001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,64,2,True,none,100,glove.6B.100d.txt,8,0.7,49.91,52.06
+SGD,0.001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,64,2,True,none,100,glove.6B.100d.txt,9,0.7,49.91,52.06
+SGD,0.001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,64,2,True,none,100,glove.6B.100d.txt,10,0.69,49.91,52.06
+SGD,0.001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,64,2,True,none,100,glove.6B.100d.txt,11,0.69,49.91,52.06
+
+
+Model,Validation Accuracy,Train Loss,Test Accuracy,Epoch,Parameters
+Part 3 RNN No OOV,50.75,0.72,51.13,20,"optimizer_type: Adam, learning_rate: 0.0001, momentum: 0.9, weight_decay: 0.0001, batch_size: 64, epochs: 100, patience: 10, model_type: RNN, rnn_type: RNN, num_layers: 2, use_bidirectional: False, use_dropout: True, use_batch_norm: True, use_layer_norm: True, aggregation_method: last_hidden, hidden_size: 128, output_size: 2, freeze_embeddings: False, oov_handling_method: none, embedding_dim: 100"
+optimizer_type,learning_rate,momentum,weight_decay,batch_size,epochs,patience,model_type,rnn_type,num_layers,use_bidirectional,use_dropout,use_batch_norm,use_layer_norm,aggregation_method,hidden_size,output_size,freeze_embeddings,oov_handling_method,embedding_dim,glove_file_path,Epoch,Train Loss,Validation Accuracy,Test Accuracy
+Adam,0.0001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,128,2,False,none,100,glove.6B.100d.txt,1,0.76,50.19,51.13
+Adam,0.0001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,128,2,False,none,100,glove.6B.100d.txt,2,0.74,50.19,51.13
+Adam,0.0001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,128,2,False,none,100,glove.6B.100d.txt,3,0.73,50.56,51.13
+Adam,0.0001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,128,2,False,none,100,glove.6B.100d.txt,4,0.73,50.66,51.13
+Adam,0.0001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,128,2,False,none,100,glove.6B.100d.txt,5,0.73,50.66,51.13
+Adam,0.0001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,128,2,False,none,100,glove.6B.100d.txt,6,0.72,50.28,51.13
+Adam,0.0001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,128,2,False,none,100,glove.6B.100d.txt,7,0.72,50.75,51.13
+Adam,0.0001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,128,2,False,none,100,glove.6B.100d.txt,8,0.72,50.66,51.13
+Adam,0.0001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,128,2,False,none,100,glove.6B.100d.txt,9,0.72,50.56,51.13
+Adam,0.0001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,128,2,False,none,100,glove.6B.100d.txt,10,0.73,51.22,51.13
+Adam,0.0001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,128,2,False,none,100,glove.6B.100d.txt,11,0.72,50.47,51.13
+Adam,0.0001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,128,2,False,none,100,glove.6B.100d.txt,12,0.72,50.47,51.13
+Adam,0.0001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,128,2,False,none,100,glove.6B.100d.txt,13,0.72,50.66,51.13
+Adam,0.0001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,128,2,False,none,100,glove.6B.100d.txt,14,0.72,50.66,51.13
+Adam,0.0001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,128,2,False,none,100,glove.6B.100d.txt,15,0.72,50.94,51.13
+Adam,0.0001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,128,2,False,none,100,glove.6B.100d.txt,16,0.72,50.38,51.13
+Adam,0.0001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,128,2,False,none,100,glove.6B.100d.txt,17,0.72,50.56,51.13
+Adam,0.0001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,128,2,False,none,100,glove.6B.100d.txt,18,0.72,50.56,51.13
+Adam,0.0001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,128,2,False,none,100,glove.6B.100d.txt,19,0.72,50.56,51.13
+Adam,0.0001,0.9,0.0001,64,100,10,RNN,RNN,2,False,True,True,True,last_hidden,128,2,False,none,100,glove.6B.100d.txt,20,0.72,50.75,51.13
+
+
+Model,Validation Accuracy,Train Loss,Test Accuracy,Epoch,Parameters
+Part 3 RNN,50.0,0.72,54.32,31,"optimizer_type: SGD, learning_rate: 0.0001, momentum: 0.9, weight_decay: 0.0001, batch_size: 32, epochs: 100, patience: 10, model_type: RNN, rnn_type: RNN, num_layers: 3, use_bidirectional: False, use_dropout: True, use_batch_norm: True, use_layer_norm: True, aggregation_method: last_hidden, hidden_size: 128, output_size: 2, freeze_embeddings: False, oov_handling_method: random, embedding_dim: 100"
+optimizer_type,learning_rate,momentum,weight_decay,batch_size,epochs,patience,model_type,rnn_type,num_layers,use_bidirectional,use_dropout,use_batch_norm,use_layer_norm,aggregation_method,hidden_size,output_size,freeze_embeddings,oov_handling_method,embedding_dim,glove_file_path,Epoch,Train Loss,Validation Accuracy,Test Accuracy
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,1,0.75,50.19,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,2,0.72,50.84,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,3,0.72,50.19,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,4,0.72,50.0,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,5,0.72,50.28,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,6,0.72,50.28,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,7,0.72,50.56,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,8,0.72,50.19,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,9,0.72,49.53,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,10,0.72,50.19,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,11,0.72,51.13,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,12,0.72,50.28,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,13,0.72,50.47,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,14,0.72,50.0,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,15,0.72,50.09,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,16,0.71,50.47,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,17,0.71,50.09,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,18,0.72,49.91,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,19,0.72,50.56,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,20,0.72,50.38,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,21,0.72,51.78,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,22,0.72,50.19,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,23,0.72,50.75,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,24,0.71,50.09,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,25,0.72,50.75,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,26,0.72,49.91,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,27,0.71,49.91,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,28,0.72,50.66,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,29,0.72,50.47,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,30,0.72,49.91,54.32
+SGD,0.0001,0.9,0.0001,32,100,10,RNN,RNN,3,False,True,True,True,last_hidden,128,2,False,random,100,glove.6B.100d.txt,31,0.72,50.0,54.32
+
+Model,Validation Accuracy,Train Loss,Test Accuracy,Epoch,Parameters
+Part 3 BLSTM/BGRU,77.67,0.11,81.8,10,"optimizer_type: Adam, learning_rate: 0.001, momentum: 0.9, weight_decay: 0.0001, batch_size: 64, epochs: 100, patience: 10, model_type: RNN, rnn_type: GRU, num_layers: 3, use_bidirectional: True, use_dropout: False, use_batch_norm: False, use_layer_norm: False, aggregation_method: mean_pooling, hidden_size: 64, output_size: 2, freeze_embeddings: False, oov_handling_method: unknown_token, embedding_dim: 100"
+optimizer_type,learning_rate,momentum,weight_decay,batch_size,epochs,patience,model_type,rnn_type,num_layers,use_bidirectional,use_dropout,use_batch_norm,use_layer_norm,aggregation_method,hidden_size,output_size,freeze_embeddings,oov_handling_method,embedding_dim,glove_file_path,Epoch,Train Loss,Validation Accuracy,Test Accuracy
+Adam,0.001,0.9,0.0001,64,100,10,RNN,GRU,3,True,False,False,False,mean_pooling,64,2,False,unknown_token,100,glove.6B.100d.txt,5,0.14,77.86,81.8
+Adam,0.001,0.9,0.0001,64,100,10,RNN,GRU,3,True,False,False,False,mean_pooling,64,2,False,unknown_token,100,glove.6B.100d.txt,10,0.11,77.67,81.8
+
+Model,Validation Accuracy,Train Loss,Test Accuracy,Epoch,Parameters
+Part 3 CNN,78.05,0.11,79.74,20,"optimizer_type: Adam, learning_rate: 0.001, momentum: 0.9, weight_decay: 0.0001, batch_size: 32, epochs: 100, patience: 10, model_type: CNN, num_filters: 128, filter_sizes: [2, 3], dropout_rate: 0.3, output_size: 2, freeze_embeddings: False, oov_handling_method: unknown_token, embedding_dim: 100, glove_file_path: glove.6B.100d.txt"
+optimizer_type,learning_rate,momentum,weight_decay,batch_size,epochs,patience,model_type,num_filters,filter_sizes,dropout_rate,output_size,freeze_embeddings,oov_handling_method,embedding_dim,glove_file_path,Epoch,Train Loss,Validation Accuracy,Test Accuracy
+Adam,0.001,0.9,0.0001,32,100,10,CNN,128,"[2, 3]",0.3,2,False,unknown_token,100,glove.6B.100d.txt,1,0.57,76.08,79.74
+Adam,0.001,0.9,0.0001,32,100,10,CNN,128,"[2, 3]",0.3,2,False,unknown_token,100,glove.6B.100d.txt,2,0.41,76.45,79.74
+Adam,0.001,0.9,0.0001,32,100,10,CNN,128,"[2, 3]",0.3,2,False,unknown_token,100,glove.6B.100d.txt,3,0.29,77.3,79.74
+Adam,0.001,0.9,0.0001,32,100,10,CNN,128,"[2, 3]",0.3,2,False,unknown_token,100,glove.6B.100d.txt,4,0.16,77.58,79.74
+Adam,0.001,0.9,0.0001,32,100,10,CNN,128,"[2, 3]",0.3,2,False,unknown_token,100,glove.6B.100d.txt,5,0.14,77.67,79.74
+Adam,0.001,0.9,0.0001,32,100,10,CNN,128,"[2, 3]",0.3,2,False,unknown_token,100,glove.6B.100d.txt,6,0.12,77.3,79.74
+Adam,0.001,0.9,0.0001,32,100,10,CNN,128,"[2, 3]",0.3,2,False,unknown_token,100,glove.6B.100d.txt,7,0.11,77.95,79.74
+Adam,0.001,0.9,0.0001,32,100,10,CNN,128,"[2, 3]",0.3,2,False,unknown_token,100,glove.6B.100d.txt,8,0.11,77.95,79.74
+Adam,0.001,0.9,0.0001,32,100,10,CNN,128,"[2, 3]",0.3,2,False,unknown_token,100,glove.6B.100d.txt,9,0.11,77.86,79.74
+Adam,0.001,0.9,0.0001,32,100,10,CNN,128,"[2, 3]",0.3,2,False,unknown_token,100,glove.6B.100d.txt,10,0.11,78.05,79.74
+Adam,0.001,0.9,0.0001,32,100,10,CNN,128,"[2, 3]",0.3,2,False,unknown_token,100,glove.6B.100d.txt,11,0.11,78.05,79.74
+Adam,0.001,0.9,0.0001,32,100,10,CNN,128,"[2, 3]",0.3,2,False,unknown_token,100,glove.6B.100d.txt,12,0.11,78.05,79.74
+Adam,0.001,0.9,0.0001,32,100,10,CNN,128,"[2, 3]",0.3,2,False,unknown_token,100,glove.6B.100d.txt,13,0.11,78.05,79.74
+Adam,0.001,0.9,0.0001,32,100,10,CNN,128,"[2, 3]",0.3,2,False,unknown_token,100,glove.6B.100d.txt,14,0.11,78.05,79.74
+Adam,0.001,0.9,0.0001,32,100,10,CNN,128,"[2, 3]",0.3,2,False,unknown_token,100,glove.6B.100d.txt,15,0.11,78.05,79.74
+Adam,0.001,0.9,0.0001,32,100,10,CNN,128,"[2, 3]",0.3,2,False,unknown_token,100,glove.6B.100d.txt,16,0.11,78.05,79.74
+Adam,0.001,0.9,0.0001,32,100,10,CNN,128,"[2, 3]",0.3,2,False,unknown_token,100,glove.6B.100d.txt,17,0.11,78.05,79.74
+Adam,0.001,0.9,0.0001,32,100,10,CNN,128,"[2, 3]",0.3,2,False,unknown_token,100,glove.6B.100d.txt,18,0.11,78.05,79.74
+Adam,0.001,0.9,0.0001,32,100,10,CNN,128,"[2, 3]",0.3,2,False,unknown_token,100,glove.6B.100d.txt,19,0.11,78.05,79.74
+Adam,0.001,0.9,0.0001,32,100,10,CNN,128,"[2, 3]",0.3,2,False,unknown_token,100,glove.6B.100d.txt,20,0.11,78.05,79.74
+
+Seq2Seq
+{'optimizer_type': 'Adam', 'learning_rate': 0.001, 'momentum': 0.9, 'weight_decay': 0.0001, 'batch_size': 64, 'epochs': 100, 'patience': 10, 'model_type': 'Seq2Seq', 'rnn_type': 'GRU', 'num_layers': 3, 'use_bidirectional': True, 'use_dropout': False, 'use_batch_norm': False, 'use_layer_norm': False, 'aggregation_method': 'mean_pooling', 'hidden_size': 64, 'output_size': 2, 'freeze_embeddings': False, 'oov_handling_method': 'unknown_token', 'embedding_dim': 100, 'glove_file_path': 'glove.6B.100d.txt'}
+Epoch 1, Loss: 0.6074, Validation Accuracy: 73.17%
+Epoch 2, Loss: 0.4796, Validation Accuracy: 75.33%
+Epoch 3, Loss: 0.3356, Validation Accuracy: 76.74%
+Epoch 4, Loss: 0.1809, Validation Accuracy: 77.77%
+Epoch 5, Loss: 0.1598, Validation Accuracy: 77.49%
+Epoch 6, Loss: 0.1430, Validation Accuracy: 77.20%
+Epoch 7, Loss: 0.1280, Validation Accuracy: 77.77%
+Epoch 8, Loss: 0.1252, Validation Accuracy: 77.30%
+Epoch 9, Loss: 0.1243, Validation Accuracy: 77.67%
+Epoch 10, Loss: 0.1220, Validation Accuracy: 77.67%
+Epoch 11, Loss: 0.1217, Validation Accuracy: 77.77%
+Epoch 12, Loss: 0.1237, Validation Accuracy: 77.86%
+Epoch 13, Loss: 0.1220, Validation Accuracy: 77.86%
+Epoch 14, Loss: 0.1227, Validation Accuracy: 77.86%
+Epoch 15, Loss: 0.1215, Validation Accuracy: 77.86%
+Epoch 16, Loss: 0.1219, Validation Accuracy: 77.86%
+Epoch 17, Loss: 0.1215, Validation Accuracy: 77.86%
+Epoch 18, Loss: 0.1216, Validation Accuracy: 77.86%
+Epoch 19, Loss: 0.1220, Validation Accuracy: 77.86%
+Epoch 20, Loss: 0.1227, Validation Accuracy: 77.86%
+Epoch 21, Loss: 0.1214, Validation Accuracy: 77.86%
+Epoch 22, Loss: 0.1212, Validation Accuracy: 77.86%
+Early stopping at epoch 22
+Test Accuracy: 79.55%
